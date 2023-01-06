@@ -15,9 +15,7 @@ function isValidFont(font: string): font is keyof typeof classes.fonts {
 export default function Selector({ font }: { font: string }) {
   let fontClasses = '';
 
-  if (isValidFont(font)) {
-    fontClasses = classes.fonts[font];
-  }
+  if (isValidFont(font)) fontClasses = classes.fonts[font];
 
   return <button className={`${classes.selector} ${fontClasses}`}>Aa</button>;
 }

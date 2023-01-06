@@ -4,7 +4,7 @@ export default function Form({ title }: { title: string }) {
   function handleOnChangeFont() {}
 
   return (
-    <div className='bg-white w-fit p-1 grid gap-y-2.5 '>
+    <div className='flex items-center justify-between gap-y-2.5 w-full bg-white'>
       <label
         htmlFor={`${title}-Form`}
         className=' text-dark-blue-1 text-xs opacity-40'
@@ -22,12 +22,11 @@ export default function Form({ title }: { title: string }) {
         <div>
           <IoIosArrowUp
             tabIndex={0}
-            color='text-dark-blue-1'
+            color='bg-arrow'
             className='hover:opacity-25 transition ease-in cursor-pointer'
           />
           <IoIosArrowDown
             tabIndex={0}
-            color='text-dark-blue-1'
             className='hover:opacity-25 transition ease-in cursor-pointer'
           />
         </div>
