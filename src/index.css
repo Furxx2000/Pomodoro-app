@@ -9,12 +9,12 @@
     /* font-family: theme('fontFamily.serif'); */
     background-color: theme('colors.dark-blue-1');
     -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
     overflow: hidden;
   }
 
   h1 {
     color: theme('colors.lilac-blue');
-    /* font-family: theme('fontFamily.sans'); */
     font-size: 100px;
     font-weight: 700;
     line-height: 120px;
@@ -23,7 +23,6 @@
 
   h2 {
     color: theme('colors.lilac-blue');
-    /* font-family: theme('fontFamily.sans'); */
     font-size: 28px;
     font-weight: 700;
     line-height: 34px;
@@ -31,17 +30,17 @@
 
   h3 {
     color: theme('colors.lilac-blue');
-    /* font-family: theme('fontFamily.sans'); */
     font-size: 16px;
     font-weight: 700;
     line-height: 19px;
     letter-spacing: 15px;
+    text-align: center;
     text-transform: uppercase;
+    text-indent: 15px;
   }
 
   h4 {
     color: theme('colors.lilac-blue');
-    /* font-family: theme('fontFamily.sans'); */
     font-size: 13px;
     font-weight: 700;
     line-height: 16px;
@@ -66,9 +65,41 @@
   .bg-dark-blue-1 {
     background-color: theme('colors.dark-blue-1');
   }
+  .bg-dark-blue-2 {
+    background-color: theme('colors.dark-blue-2');
+  }
+  .bg-backdrop {
+    background-color: rgba(10, 12, 28, 0.5);
+  }
+  .bg-arrow {
+    background-color: theme('colors.dark-blue-1/50');
+  }
 
+  .text-lilac-blue {
+    color: theme('colors.lilac-blue');
+  }
   .text-dark-blue-1 {
     color: theme('colors.dark-blue-1');
+  }
+  .text-dark-blue-2 {
+    color: theme('colors.dark-blue-2');
+  }
+
+  .timer-size {
+    width: clamp(300px, 75vw, 410px);
+    height: clamp(300px, 75vw, 410px);
+  }
+  .timer-gradient {
+    background-image: linear-gradient(315deg, #2e325a 0%, #0e112a 100%);
+    box-shadow: -50px -50px 100px #272c5a, 50px 50px 100px #121530;
+  }
+  .timer-center-size {
+    width: clamp(268px, 65vw, 339px);
+    height: clamp(268px, 65vw, 339px);
+  }
+
+  .dialog-width {
+    width: clamp(327px, 65vw, 540px);
   }
 
   .text-1 {
