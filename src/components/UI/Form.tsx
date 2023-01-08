@@ -11,7 +11,7 @@ export default function Form({ title }: { title: string }) {
       >
         {title}
       </label>
-      <div className='bg-light-gray rounded-[10px] w-[140px] h-[48px] p-4 flex items-center'>
+      <div className='bg-light-gray rounded-[10px] w-[140px] h-[40px] md:h-[48px] p-4 flex items-center'>
         <input
           id={`${title}-Form`}
           className='w-full bg-light-gray text-sm text-dark-blue-1 appearance-none outline-none'
@@ -19,15 +19,16 @@ export default function Form({ title }: { title: string }) {
           value='25'
           onChange={handleOnChangeFont}
         />
-        <div>
+        <div className='form-arrow'>
           <IoIosArrowUp
+            size='18px'
             tabIndex={0}
-            color='bg-arrow'
-            className='hover:opacity-25 transition ease-in cursor-pointer'
+            className='md:w-5 md:h-5 transition ease-in cursor-pointer outline-none'
           />
           <IoIosArrowDown
+            size='18px'
             tabIndex={0}
-            className='hover:opacity-25 transition ease-in cursor-pointer'
+            className='md:w-5 md:h-5 transition ease-in cursor-pointer outline-none'
           />
         </div>
       </div>
