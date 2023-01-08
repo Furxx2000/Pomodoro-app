@@ -17,6 +17,9 @@ module.exports = {
       serif: ['"Roboto Slab"', 'serif'],
       mono: ['"Space Mono"', 'monospace'],
     },
+    timer: {
+      percentage: 80,
+    },
     extend: {},
   },
   plugins: [],
