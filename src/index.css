@@ -58,6 +58,15 @@
 @layer components {
   .bg-theme-1 {
     background-color: theme('colors.theme-1');
+    stroke: theme('colors.theme-1');
+  }
+  .bg-theme-2 {
+    background-color: theme('colors.theme-2');
+    stroke: theme('colors.theme-2');
+  }
+  .bg-theme-3 {
+    background-color: theme('colors.theme-3');
+    stroke: theme('colors.theme-3');
   }
   .bg-light-gray {
     background-color: theme('colors.light-gray');
@@ -98,6 +107,27 @@
     height: clamp(268px, 65vw, 339px);
   }
 
+  .timer-progress-bar {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke-width: 10;
+    stroke-linecap: round;
+    rotate: 270deg;
+    transform-origin: center;
+  }
+
+  .timer-progress-bar:nth-child(1) {
+    stroke-dashoffset: 0;
+    stroke: transparent;
+  }
+
+  .timer-progress-bar:nth-child(2) {
+    stroke-dasharray: 780;
+    stroke-dashoffset: calc(780 - (780 * theme('timer.percentage')) / 100);
+  }
+
   .dialog-width {
     width: clamp(327px, 65vw, 540px);
   }
@@ -115,6 +145,21 @@
     font-weight: 700;
     line-height: 14px;
     opacity: 0.4;
+  }
+
+  .close-icon {
+    color: #1e213f8a;
+  }
+
+  .close-icon:hover {
+    color: theme('colors.dark-blue-1');
+  }
+
+  .form-arrow svg {
+    color: #1e213f46;
+  }
+  .form-arrow svg:hover {
+    color: theme('colors.dark-blue-1');
   }
 
   .rounded-button {
