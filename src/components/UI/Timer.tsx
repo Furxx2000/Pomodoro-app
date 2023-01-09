@@ -20,8 +20,8 @@ export default function Timer() {
             className={`timer-progress-bar transition ease-in ${curTheme.color}`}
           ></circle>
         </svg>
-        <h1 className='text-[80px]'>17:59</h1>
-        <h3>pause</h3>
+        <h1 className={`text-[80px] ${curTheme.font}`}>17:59</h1>
+        <h3 className={`${curTheme.font}`}>pause</h3>
       </div>
     </section>
   );
