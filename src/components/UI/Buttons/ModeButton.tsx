@@ -8,7 +8,7 @@ interface Props {
 }
 
 const classes = {
-  mode: 'grow grid place-items-center text-sm rounded-[26.5px] opacity-40 transition ease-in cursor-pointer',
+  mode: 'grow grid place-items-center text-sm font-bold rounded-[26.5px] opacity-40 transition ease-in cursor-pointer',
   active: (isSelected: boolean, theme: string) =>
     isSelected ? `${theme} opacity-100 text-dark-blue-1` : 'text-lilac-blue',
 };
@@ -19,8 +19,8 @@ export default function ModeButton({ mode }: Props) {
   return (
     <button
       className={`${classes.active(mode.isSelected, curTheme.color)} ${
-        classes.mode
-      }`}
+        curTheme.font
+      } ${classes.mode}`}
       onClick={() => handleSetMode(mode.modeType)}
     >
       {mode.modeType}
