@@ -31,14 +31,17 @@ export const Colors = [
 export const Modes = [
   {
     modeType: 'pomodoro',
+    value: '25',
     isSelected: true,
   },
   {
     modeType: 'short break',
+    value: '5',
     isSelected: false,
   },
   {
     modeType: 'long break',
+    value: '15',
     isSelected: false,
   },
 ];
