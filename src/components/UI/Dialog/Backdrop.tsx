@@ -6,7 +6,7 @@ export default function Backdrop() {
   return (
     <div
       className={`fixed inset-0 bg-backdrop ${
-        dialog ? '' : 'opacity-0 invisible'
+        dialog ? '' : 'opacity-0 pointer-events-none'
       } transition ease-in z-20`}
     ></div>
   );
