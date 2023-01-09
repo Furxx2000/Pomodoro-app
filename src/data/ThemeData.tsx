@@ -49,4 +49,5 @@ export const Modes = [
 export const CurTheme = {
   font: 'font-sans',
   color: 'bg-theme-1',
+  modes: Modes,
 };
