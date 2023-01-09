@@ -21,7 +21,11 @@ export default function Dialog() {
           <DialogSetting title='time (minutes)'>
             <div className='grid gap-2 w-full'>
               {modes.map((mode) => (
-                <Form key={mode.modeType} title={mode.modeType} />
+                <Form
+                  key={mode.modeType}
+                  title={mode.modeType}
+                  mins={mode.value}
+                />
               ))}
             </div>
           </DialogSetting>
