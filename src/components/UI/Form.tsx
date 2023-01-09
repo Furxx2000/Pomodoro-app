@@ -1,7 +1,18 @@
+import { useThemeState } from '../../hooks/useThemeState';
 import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
 
-export default function Form({ title }: { title: string }) {
-  function handleOnChangeFont() {}
+interface Props {
+  title: string;
+  mins: string;
+}
+
+export default function Form({ title, mins }: Props) {
+  const {
+    handleIncrease,
+    handleDecrease,
+    handleChangeMinsByInput,
+    handleInvalidVal,
+  } = useThemeState();
 
   return (
     <div className='flex items-center justify-between gap-y-2.5 w-full bg-white'>
@@ -15,20 +26,24 @@ export default function Form({ title }: { title: string }) {
         <input
           id={`${title}-Form`}
           className='w-full bg-light-gray text-sm text-dark-blue-1 appearance-none outline-none'
-          type='number'
-          value='25'
-          onChange={handleOnChangeFont}
+          type='text'
+          value={mins}
+          maxLength={2}
+          onChange={(e) => handleChangeMinsByInput(title, e.target.value)}
+          onBlur={() => handleInvalidVal(title)}
         />
         <div className='form-arrow'>
           <IoIosArrowUp
             size='18px'
             tabIndex={0}
             className='md:w-5 md:h-5 transition ease-in cursor-pointer outline-none'
+            onClick={() => handleIncrease(title)}
           />
           <IoIosArrowDown
             size='18px'
             tabIndex={0}
             className='md:w-5 md:h-5 transition ease-in cursor-pointer outline-none'
+            onClick={() => handleDecrease(title)}
           />
         </div>
       </div>
