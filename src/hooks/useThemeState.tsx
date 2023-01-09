@@ -22,8 +22,16 @@ export default function useStateSource() {
         isSelected: color.colorTheme === curTheme.color,
       };
     });
+
+    const modeArr = curTheme.modes.map((mode) => {
+      return {
+        ...mode,
+        value: mode.value,
+      };
+    });
     setFont(fontArr);
     setColor(colorArr);
+    setMode(modeArr);
     setDialog(!dialog);
   }
 
@@ -48,19 +56,24 @@ export default function useStateSource() {
   }
 
   function handleSetMode(modeType: string) {
-    const newArr = modes.map((mode) => {
+    const newArr = curTheme.modes.map((mode) => {
       return {
         ...mode,
         isSelected: mode.modeType === modeType,
       };
     });
-    setMode(newArr);
+    const newCurTheme = {
+      ...curTheme,
+      modes: newArr,
+    };
+    setCurTheme(newCurTheme);
   }
 
   function handleApplyTheme() {
     const curTheme = {
       font: fonts.filter((font) => font.isSelected)[0].fontType,
       color: colors.filter((color) => color.isSelected)[0].colorTheme,
+      modes: modes,
     };
     setCurTheme(curTheme);
     setDialog(!dialog);
