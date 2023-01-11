@@ -50,4 +50,11 @@ export const CurTheme = {
   font: 'font-sans',
   color: 'bg-theme-1',
   modes: Modes,
+  activeState: Modes.map((mode) => {
+    return {
+      ...mode,
+      value: (+mode.value * 60).toString(),
+    };
+  }),
+  isTimerStart: false,
 };
