@@ -1,6 +1,6 @@
 import Logo from '../UI/Logo';
-import ModeSwitcher from '../UI/ModeSwitcher';
-import Timer from '../UI/Timer';
+import ModeSwitcher from '../UI/ModeSwitch/ModeSwitcher';
+import Timer from '../UI/Timer/Timer';
 import Dialog from '../UI/Dialog/Dialog';
 import { useThemeState } from '../../hooks/useThemeState';
 import { IoSettingsSharp } from 'react-icons/io5';

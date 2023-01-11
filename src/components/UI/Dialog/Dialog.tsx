@@ -1,9 +1,9 @@
 import { useThemeState } from '../../../hooks/useThemeState';
 import Backdrop from './Backdrop';
-import Form from '../Form';
-import FontSelector from '../FontSelector';
-import ColorSelector from '../ColorSelector';
-import ApplyButton from '../Buttons/ApplyButton';
+import Form from '../TimerSettings/Form';
+import FontSelector from '../TimerSettings/FontSelector';
+import ColorSelector from '../TimerSettings/ColorSelector';
+import ApplyButton from '../TimerSettings/ApplyButton';
 import DialogContainer from './DialogContainer';
 import DialogHeader from './DialogHeader';
 import DialogContent from './DialogContent';
