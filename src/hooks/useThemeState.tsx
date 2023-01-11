@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useEffect, useRef, useState } from 'react';
 import { Fonts, Colors, Modes, CurTheme } from '../data/ThemeData';
 
 export default function useStateSource() {
@@ -7,31 +7,72 @@ export default function useStateSource() {
   const [fonts, setFont] = useState(Fonts);
   const [colors, setColor] = useState(Colors);
   const [modes, setMode] = useState(Modes);
+  const TimerRef = useRef<any>(null);
+  const ModeRef = useRef(Modes);
+
+  useEffect(() => {
+    if (curTheme.isTimerStart) setTimer();
+    else clearTimer();
+    return () => clearTimer();
+  }, [curTheme.isTimerStart, curTheme.activeState]);
+
+  function clearTimer() {
+    if (TimerRef.current) clearInterval(TimerRef.current);
+  }
+
+  function setTimer() {
+    TimerRef.current = setInterval(() => {
+      const newCurTheme = {
+        ...curTheme,
+        activeState: curTheme.activeState.map((mode) => {
+          return {
+            ...mode,
+            value: mode.isSelected ? (+mode.value - 1).toString() : mode.value,
+          };
+        }),
+      };
+      console.log(newCurTheme);
+      setCurTheme(newCurTheme);
+    }, 1000);
+  }
+
+  // function countDownBySec() {
+  //   const newCurTheme = {
+  //     ...curTheme,
+  //     modes: modes.map((mode) => {
+  //       return {
+  //         ...mode,
+  //         value: mode.isSelected ? (+mode.value - 1).toString() : mode.value,
+  //       };
+  //     }),
+  //   };
+  //   console.log(newCurTheme);
+  //   setCurTheme(newCurTheme);
+  // }
 
   function handleSetDialog() {
-    const fontArr = fonts.map((font) => {
-      return {
-        ...font,
-        isSelected: font.fontType === curTheme.font,
-      };
-    });
+    if (!dialog) {
+      ModeRef.current = modes;
+    }
+    if (ModeRef.current !== modes && dialog) {
+      const fontArr = fonts.map((font) => {
+        return {
+          ...font,
+          isSelected: font.fontType === curTheme.font,
+        };
+      });
 
-    const colorArr = colors.map((color) => {
-      return {
-        ...color,
-        isSelected: color.colorTheme === curTheme.color,
-      };
-    });
+      const colorArr = colors.map((color) => {
+        return {
+          ...color,
+          isSelected: color.colorTheme === curTheme.color,
+        };
+      });
 
-    const modeArr = curTheme.modes.map((mode) => {
-      return {
-        ...mode,
-        value: mode.value,
-      };
-    });
-    setFont(fontArr);
-    setColor(colorArr);
-    setMode(modeArr);
+      setFont(fontArr);
+      setColor(colorArr);
+      setMode(ModeRef.current);
+    }
     setDialog(!dialog);
   }
 
@@ -56,7 +97,7 @@ export default function useStateSource() {
   }
 
   function handleSetMode(modeType: string) {
-    const newArr = curTheme.modes.map((mode) => {
+    const newArr = curTheme.activeState.map((mode) => {
       return {
         ...mode,
         isSelected: mode.modeType === modeType,
@@ -64,18 +105,24 @@ export default function useStateSource() {
     });
     const newCurTheme = {
       ...curTheme,
-      modes: newArr,
+      activeState: newArr,
     };
     setCurTheme(newCurTheme);
   }
 
   function handleApplyTheme() {
-    const curTheme = {
+    const newCurTheme = {
+      ...curTheme,
       font: fonts.filter((font) => font.isSelected)[0].fontType,
       color: colors.filter((color) => color.isSelected)[0].colorTheme,
-      modes: modes,
+      activeState: modes.map((mode) => {
+        return {
+          ...mode,
+          value: (+mode.value * 60).toString(),
+        };
+      }),
     };
-    setCurTheme(curTheme);
+    setCurTheme(newCurTheme);
     setDialog(!dialog);
   }
 
@@ -108,7 +155,6 @@ export default function useStateSource() {
   }
 
   function handleChangeMinsByInput(modeName: string, value: string) {
-    console.log(modeName, value);
     const newArr = modes.map((mode) => {
       return {
         ...mode,
@@ -117,6 +163,7 @@ export default function useStateSource() {
     });
     setMode(newArr);
   }
+  1;
 
   function handleInvalidVal(modeName: string) {
     const newArr = modes.map((mode) => {
@@ -134,6 +181,14 @@ export default function useStateSource() {
     return value;
   }
 
+  function handleChangeTimerState() {
+    const newCurTheme = {
+      ...curTheme,
+      isTimerStart: !curTheme.isTimerStart,
+    };
+    setCurTheme(newCurTheme);
+  }
+
   return {
     dialog,
     fonts,
@@ -149,6 +204,7 @@ export default function useStateSource() {
     handleDecrease,
     handleChangeMinsByInput,
     handleInvalidVal,
+    handleChangeTimerState,
   };
 }
 
