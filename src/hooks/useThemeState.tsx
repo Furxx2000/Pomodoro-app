@@ -11,8 +11,15 @@ export default function useStateSource() {
   const ModeRef = useRef(Modes);
 
   useEffect(() => {
+    const time = +curTheme.activeState.filter((mode) => mode.isSelected)[0]
+      .value;
+    if (time <= 0) {
+      clearTimer();
+      handleChangeTimerState();
+    }
     if (curTheme.isTimerStart) setTimer();
     else clearTimer();
+
     return () => clearTimer();
   }, [curTheme.isTimerStart, curTheme.activeState]);
 
@@ -31,30 +38,23 @@ export default function useStateSource() {
           };
         }),
       };
-      console.log(newCurTheme);
       setCurTheme(newCurTheme);
     }, 1000);
   }
 
-  // function countDownBySec() {
-  //   const newCurTheme = {
-  //     ...curTheme,
-  //     modes: modes.map((mode) => {
-  //       return {
-  //         ...mode,
-  //         value: mode.isSelected ? (+mode.value - 1).toString() : mode.value,
-  //       };
-  //     }),
-  //   };
-  //   console.log(newCurTheme);
-  //   setCurTheme(newCurTheme);
-  // }
-
   function handleSetDialog() {
+    const isModeChange = ModeRef.current !== modes;
+    const isFontChange =
+      fonts.find((font) => font.isSelected)?.fontType !== curTheme.font;
+    const isColorChange =
+      colors.find((color) => color.isSelected)?.colorTheme !== curTheme.color;
+    const isSettingsChange = isModeChange || isFontChange || isColorChange;
+
     if (!dialog) {
       ModeRef.current = modes;
     }
-    if (ModeRef.current !== modes && dialog) {
+    if (isSettingsChange && dialog) {
+      console.log('hi');
       const fontArr = fonts.map((font) => {
         return {
           ...font,
