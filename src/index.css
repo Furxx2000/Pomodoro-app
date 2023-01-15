@@ -133,11 +133,6 @@
     stroke: transparent;
   }
 
-  .timer-progress-bar:nth-child(2) {
-    stroke-dasharray: 780;
-    stroke-dashoffset: calc(780 - (780 * theme('timer.percentage')) / 100);
-  }
-
   .dialog-width {
     width: clamp(327px, 65vw, 540px);
   }
