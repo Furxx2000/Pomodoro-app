@@ -11,20 +11,14 @@ export default function useStateSource() {
   const ModeRef = useRef(Modes);
 
   useEffect(() => {
-    const time = +curTheme.activeState.filter((mode) => mode.isSelected)[0]
-      .value;
-    if (time <= 0) {
-      clearTimer();
-      handleChangeTimerState();
-    }
-    if (curTheme.isTimerStart) setTimer();
-    else clearTimer();
-
+    // if (curTheme.isTimerStart) setTimer();
+    // else clearTimer();
+    setTimer();
     return () => clearTimer();
-  }, [curTheme.isTimerStart, curTheme.activeState]);
+  }, []);
 
   function clearTimer() {
-    if (TimerRef.current) clearInterval(TimerRef.current);
+    clearInterval(TimerRef.current);
   }
 
   function setTimer() {
@@ -40,6 +34,7 @@ export default function useStateSource() {
       };
       setCurTheme(newCurTheme);
     }, 1000);
+    console.log(TimerRef.current);
   }
 
   function handleSetDialog() {
@@ -54,7 +49,6 @@ export default function useStateSource() {
       ModeRef.current = modes;
     }
     if (isSettingsChange && dialog) {
-      console.log('hi');
       const fontArr = fonts.map((font) => {
         return {
           ...font,
@@ -103,10 +97,17 @@ export default function useStateSource() {
         isSelected: mode.modeType === modeType,
       };
     });
+    const modeArr = modes.map((mode) => {
+      return {
+        ...mode,
+        isSelected: mode.modeType === modeType,
+      };
+    });
     const newCurTheme = {
       ...curTheme,
       activeState: newArr,
     };
+    setMode(modeArr);
     setCurTheme(newCurTheme);
   }
 
