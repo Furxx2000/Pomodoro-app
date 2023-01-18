@@ -36,13 +36,13 @@ export default function Form({ title, mins }: Props) {
           <IoIosArrowUp
             size='18px'
             tabIndex={0}
-            className='md:w-5 md:h-5 transition ease-in cursor-pointer outline-none'
+            className='md:w-5 md:h-5 transition ease-in cursor-pointer outline-none focus:ring-1'
             onClick={() => handleIncrease(title)}
           />
           <IoIosArrowDown
             size='18px'
             tabIndex={0}
-            className='md:w-5 md:h-5 transition ease-in cursor-pointer outline-none'
+            className='md:w-5 md:h-5 transition ease-in cursor-pointer outline-none focus:ring-1'
             onClick={() => handleDecrease(title)}
           />
         </div>
