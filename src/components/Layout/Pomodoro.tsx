@@ -10,14 +10,14 @@ export default function Pomodoro() {
 
   return (
     <>
-      <main className='px-6 py-8 flex flex-col items-center gap-11'>
+      <main className='px-6 pt-8 pb-20 flex flex-col items-center gap-11 min-h-screen justify-center md:justify-evenly'>
         <Logo />
         <ModeSwitcher />
         <Timer />
         <IoSettingsSharp
           tabIndex={0}
           color='#D7E0FF'
-          className='cursor-pointer outline-none'
+          className='opacity-50 cursor-pointer outline-none'
           size='28px'
           onClick={handleSetDialog}
         />
