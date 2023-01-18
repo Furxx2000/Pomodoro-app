@@ -6,5 +6,11 @@ export default function TimerTime() {
   const curMode = curTheme.activeState.filter((mode) => mode.isSelected)[0];
   const curTime = TransformTime(curMode.value);
 
-  return <h1 className={`text-[80px] ${curTheme.font}`}>{curTime}</h1>;
+  return (
+    <h1
+      className={`text-[80px] ${curTheme.font} md:text-[100px] md:leading-[124px]`}
+    >
+      {curTime}
+    </h1>
+  );
 }

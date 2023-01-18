@@ -15,14 +15,14 @@ export default function Form({ title, mins }: Props) {
   } = useThemeState();
 
   return (
-    <div className='flex items-center justify-between gap-y-2.5 w-full bg-white'>
+    <div className='flex items-center justify-between gap-y-2.5 w-full bg-white md:flex-col md:items-start'>
       <label
         htmlFor={`${title}-Form`}
         className=' text-dark-blue-1 text-xs opacity-40'
       >
         {title}
       </label>
-      <div className='bg-light-gray rounded-[10px] w-[140px] h-[40px] md:h-[48px] p-4 flex items-center'>
+      <div className='bg-light-gray rounded-[10px] w-[140px] h-[40px] p-4 flex items-center md:h-[48px]'>
         <input
           id={`${title}-Form`}
           className='w-full bg-light-gray text-sm text-dark-blue-1 appearance-none outline-none'
@@ -36,13 +36,13 @@ export default function Form({ title, mins }: Props) {
           <IoIosArrowUp
             size='18px'
             tabIndex={0}
-            className='md:w-5 md:h-5 transition ease-in cursor-pointer outline-none focus:ring-1'
+            className='transition ease-in cursor-pointer outline-none focus:ring-1 md:w-5 md:h-5'
             onClick={() => handleIncrease(title)}
           />
           <IoIosArrowDown
             size='18px'
             tabIndex={0}
-            className='md:w-5 md:h-5 transition ease-in cursor-pointer outline-none focus:ring-1'
+            className='transition ease-in cursor-pointer outline-none focus:ring-1 md:w-5 md:h-5'
             onClick={() => handleDecrease(title)}
           />
         </div>

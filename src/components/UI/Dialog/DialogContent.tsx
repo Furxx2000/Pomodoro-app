@@ -3,5 +3,5 @@ export default function DialogContent({
 }: {
   children: React.ReactNode;
 }) {
-  return <article className='px-6'>{children}</article>;
+  return <article className='px-6 md:px-10'>{children}</article>;
 }

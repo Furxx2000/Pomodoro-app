@@ -18,8 +18,8 @@ export default function Dialog() {
       <DialogContainer>
         <DialogHeader />
         <DialogContent>
-          <DialogSetting title='time (minutes)'>
-            <div className='grid gap-2 w-full'>
+          <DialogSetting title='time (minutes)' column>
+            <div className='grid gap-2 w-full md:grid-cols-3'>
               {modes.map((mode) => (
                 <Form
                   key={mode.modeType}
