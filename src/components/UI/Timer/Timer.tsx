@@ -3,6 +3,7 @@ import TimerProgressBar from './TimerProgressBar';
 import TimerTime from './TimerTime';
 import TimerState from './TimerState';
 import TimerContainer from './TimerContainer';
+import TimerSession from './TimerSession';
 
 export default function Timer() {
   const { handleChangeTimerState } = useThemeState();
@@ -14,6 +15,7 @@ export default function Timer() {
     >
       <TimerContainer>
         <TimerProgressBar />
+        <TimerSession />
         <TimerTime />
         <TimerState />
       </TimerContainer>
