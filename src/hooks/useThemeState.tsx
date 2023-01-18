@@ -7,15 +7,31 @@ export default function useStateSource() {
   const [fonts, setFont] = useState(Fonts);
   const [colors, setColor] = useState(Colors);
   const [modes, setMode] = useState(Modes);
+  const [session, setSession] = useState(0);
+  const time = +curTheme.activeState.filter((mode) => mode.isSelected)[0].value;
   const TimerRef = useRef<any>(null);
   const ModeRef = useRef(Modes);
 
   useEffect(() => {
-    // if (curTheme.isTimerStart) setTimer();
-    // else clearTimer();
-    setTimer();
+    if (time <= 0 && curTheme.isTimerStart) {
+      const isBreakOver = modes.find((mode) => mode.isSelected)?.modeType;
+
+      if (isBreakOver === 'pomodoro') setSession((session) => session + 1);
+      const breakType =
+        isBreakOver === 'pomodoro'
+          ? (session + 1) % 4 === 0
+            ? 'long break'
+            : 'short break'
+          : 'pomodoro';
+      handleSetMode(breakType);
+      return () => clearTimer();
+    }
+
+    if (curTheme.isTimerStart) setTimer();
+    else clearTimer();
+
     return () => clearTimer();
-  }, []);
+  }, [curTheme.isTimerStart, curTheme.activeState]);
 
   function clearTimer() {
     clearInterval(TimerRef.current);
@@ -34,7 +50,6 @@ export default function useStateSource() {
       };
       setCurTheme(newCurTheme);
     }, 1000);
-    console.log(TimerRef.current);
   }
 
   function handleSetDialog() {
@@ -91,12 +106,6 @@ export default function useStateSource() {
   }
 
   function handleSetMode(modeType: string) {
-    const newArr = curTheme.activeState.map((mode) => {
-      return {
-        ...mode,
-        isSelected: mode.modeType === modeType,
-      };
-    });
     const modeArr = modes.map((mode) => {
       return {
         ...mode,
@@ -105,7 +114,13 @@ export default function useStateSource() {
     });
     const newCurTheme = {
       ...curTheme,
-      activeState: newArr,
+      isTimerStart: false,
+      activeState: modeArr.map((mode) => {
+        return {
+          ...mode,
+          value: (+mode.value * 60).toString(),
+        };
+      }),
     };
     setMode(modeArr);
     setCurTheme(newCurTheme);
@@ -183,6 +198,7 @@ export default function useStateSource() {
   }
 
   function handleChangeTimerState() {
+    if (time <= 0) return;
     const newCurTheme = {
       ...curTheme,
       isTimerStart: !curTheme.isTimerStart,
@@ -191,6 +207,7 @@ export default function useStateSource() {
   }
 
   return {
+    session,
     dialog,
     fonts,
     colors,
