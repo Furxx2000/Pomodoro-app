@@ -113,8 +113,8 @@
     box-shadow: -50px -50px 100px #272c5a, 50px 50px 100px #121530;
   }
   .timer-center-size {
-    width: clamp(268px, 65vw, 339px);
-    height: clamp(268px, 65vw, 339px);
+    width: clamp(268px, 65vw, 366px);
+    height: clamp(268px, 65vw, 366px);
   }
 
   .timer-progress-bar {
@@ -128,13 +128,19 @@
     transform-origin: center;
   }
 
+  @media only screen and (min-width: 768px) {
+    .timer-progress-bar {
+      stroke-width: 14;
+    }
+  }
+
   .timer-progress-bar:nth-child(1) {
     stroke-dashoffset: 0;
     stroke: transparent;
   }
 
   .dialog-width {
-    width: clamp(327px, 65vw, 540px);
+    width: clamp(327px, 71vw, 540px);
   }
 
   .text-1 {
