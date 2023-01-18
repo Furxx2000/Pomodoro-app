@@ -17,7 +17,7 @@ export default function Pomodoro() {
         <IoSettingsSharp
           tabIndex={0}
           color='#D7E0FF'
-          className='opacity-50 cursor-pointer outline-none'
+          className='opacity-50 hover:opacity-100 transition ease-in cursor-pointer outline-none'
           size='28px'
           onClick={handleSetDialog}
         />

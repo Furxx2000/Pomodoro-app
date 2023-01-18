@@ -6,7 +6,7 @@ export default function TimerContainer({
   children: React.ReactNode;
 }) {
   return (
-    <div className='absolute grid place-content-center bg-dark-blue-2 rounded-full timer-center-size'>
+    <div className='absolute grid place-content-center bg-dark-blue-2 rounded-full timer-center-size cursor-pointer'>
       {children}
     </div>
   );

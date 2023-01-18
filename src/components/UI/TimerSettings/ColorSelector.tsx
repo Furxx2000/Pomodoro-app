@@ -13,7 +13,7 @@ export default function ColorSelector({ theme }: Props) {
 
   return (
     <button
-      className={`grid place-items-center rounded-full w-10 h-10 transition ease-in ${theme.colorTheme}`}
+      className={`grid place-items-center hover:ring-2 ring-light-gray ring-offset-4 rounded-full w-10 h-10 transition ease-in ${theme.colorTheme}`}
       onClick={() => handleSetColor(theme.colorTheme)}
     >
       {theme.isSelected && <BiCheck color='#161932' size='26px' />}

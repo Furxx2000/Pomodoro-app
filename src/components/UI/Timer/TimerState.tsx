@@ -5,7 +5,7 @@ export default function TimerState() {
 
   return (
     <h3
-      className={`${curTheme.font} tracking-[15px] indent-[15px] md:text-base`}
+      className={`timer-state ${curTheme.font} tracking-[15px] indent-[15px] transition ease-in z-10 md:text-base`}
     >
       {curTheme.isTimerStart ? 'pause' : 'start'}
     </h3>

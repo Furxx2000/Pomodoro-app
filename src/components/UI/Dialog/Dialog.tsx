@@ -30,21 +30,21 @@ export default function Dialog() {
             </div>
           </DialogSetting>
           <DialogSetting title='font'>
-            <div className='flex gap-4 w-full justify-center'>
+            <div className='flex gap-4 w-full justify-center md:justify-end'>
               {fonts.map((font) => (
                 <FontSelector key={font.fontType} font={font} />
               ))}
             </div>
           </DialogSetting>
           <DialogSetting title='color'>
-            <div className='flex gap-4 w-full justify-center'>
+            <div className='flex gap-4 w-full justify-center md:justify-end'>
               {colors.map((color) => (
                 <ColorSelector key={color.colorTheme} theme={color} />
               ))}
             </div>
           </DialogSetting>
         </DialogContent>
-        <div className='absolute left-1/2 translate-x-[-50%] translate-y-[50%]'>
+        <div className='absolute left-1/2 translate-x-[-50%] translate-y-[50%] md:translate-y-[25%]'>
           <ApplyButton />
         </div>
       </DialogContainer>
