@@ -6,22 +6,25 @@ export default function TimerProgressBar() {
     ?.value;
   const mode = +modes.filter((mode) => mode.isSelected)[0]?.value;
   const curValue = theme / (mode * 60);
+  let mql = matchMedia('(min-width: 768px)');
+  let strokeValue = mql.matches ? 1005 : 745;
+  let circleValue = mql.matches ? 160 : 119;
 
   return (
-    <svg className='absolute w-[258px] h-[258px] place-self-center'>
+    <svg className='absolute w-[258px] h-[258px] place-self-center md:w-[353px] md:h-[353px]'>
       <circle
         cx='50%'
         cy='50%'
-        r='119'
+        r={circleValue}
         className='timer-progress-bar transition ease-in'
       ></circle>
       <circle
         cx='50%'
         cy='50%'
-        r='119'
+        r={circleValue}
         style={{
-          strokeDasharray: 745,
-          strokeDashoffset: `calc(745 - (745 * ${
+          strokeDasharray: `${strokeValue}`,
+          strokeDashoffset: `calc(${strokeValue} - (${strokeValue} * ${
             +curValue.toFixed(3) * 100
           } / 100)`,
         }}
