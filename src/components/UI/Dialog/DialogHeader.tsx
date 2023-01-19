@@ -9,7 +9,7 @@ export default function DialogHeader() {
       <h5 className='text-dark-blue-2 md:text-[28px]'>Settings</h5>
       <IoCloseSharp
         size='24px'
-        className='close-icon  cursor-pointer'
+        className='close-icon  cursor-pointer transition ease-in'
         onClick={handleSetDialog}
       />
     </header>
