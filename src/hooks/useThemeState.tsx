@@ -8,9 +8,9 @@ export default function useStateSource() {
   const [colors, setColor] = useState(Colors);
   const [modes, setMode] = useState(Modes);
   const [session, setSession] = useState(0);
-  const time = +curTheme.activeState.filter((mode) => mode.isSelected)[0].value;
   const TimerRef = useRef<any>(null);
   const ModeRef = useRef(Modes);
+  const time = +curTheme.activeState.filter((mode) => mode.isSelected)[0].value;
 
   useEffect(() => {
     if (time <= 0 && curTheme.isTimerStart) {
@@ -24,6 +24,7 @@ export default function useStateSource() {
             : 'short break'
           : 'pomodoro';
       handleSetMode(breakType);
+      playAudio('times-up');
       return () => clearTimer();
     }
 
@@ -32,6 +33,15 @@ export default function useStateSource() {
 
     return () => clearTimer();
   }, [curTheme.isTimerStart, curTheme.activeState]);
+
+  async function playAudio(id: string) {
+    const audio = document.getElementById(id) as HTMLAudioElement;
+    try {
+      await audio?.play();
+    } catch (e) {
+      throw e;
+    }
+  }
 
   function clearTimer() {
     clearInterval(TimerRef.current);
@@ -203,6 +213,7 @@ export default function useStateSource() {
       ...curTheme,
       isTimerStart: !curTheme.isTimerStart,
     };
+    playAudio('click');
     setCurTheme(newCurTheme);
   }
 
