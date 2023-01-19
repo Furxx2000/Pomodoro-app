@@ -173,6 +173,10 @@
     color: theme('colors.dark-blue-1');
   }
 
+  .steel {
+    color: steelblue;
+  }
+
   .rounded-button {
     border-radius: 26.5px;
   }
