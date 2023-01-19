@@ -2,6 +2,7 @@ import Logo from '../UI/Logo';
 import ModeSwitcher from '../UI/ModeSwitch/ModeSwitcher';
 import Timer from '../UI/Timer/Timer';
 import Dialog from '../UI/Dialog/Dialog';
+import Audio from '../Audio/Audio';
 import { useThemeState } from '../../hooks/useThemeState';
 import { IoSettingsSharp } from 'react-icons/io5';
 
@@ -23,6 +24,7 @@ export default function Pomodoro() {
         />
       </main>
       <Dialog />
+      <Audio />
     </>
   );
 }
