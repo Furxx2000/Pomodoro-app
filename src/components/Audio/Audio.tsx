@@ -1,4 +1,4 @@
-import Beep from '../../assets/ringtone.mp4';
+import Beep from '../../assets/ringtone.mp3';
 import Click from '../../assets/Click.mp3';
 
 export default function Audio() {
