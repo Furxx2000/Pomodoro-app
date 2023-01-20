@@ -35,8 +35,8 @@ export default function useStateSource() {
   }, [curTheme.isTimerStart, curTheme.activeState]);
 
   async function playAudio(id: string) {
-    const audio = document.getElementById(id) as HTMLAudioElement;
     try {
+      const audio = document.getElementById(id) as HTMLAudioElement;
       await audio?.play();
     } catch (e) {
       throw e;
